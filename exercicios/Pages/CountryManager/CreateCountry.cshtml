@@ -1,0 +1,31 @@
+﻿@page
+@model ex1.Pages.CountryManager.CreateCountryModel
+@{
+}
+<h1>Cadastrar cidade</h1>
+
+<form method="post">
+    @for (int i = 0; i < Model.Paises.Count; i++)
+	{
+		<input type="text" asp-for="Paises[i].CountryName" placeholder="Nome do país" />
+		<span asp-validation-for="Paises[i].CountryName" style="color:red"></span>
+			
+		<input type="text" asp-for="Paises[i].CountryCode" placeholder="Código do país" />
+		<span asp-validation-for="Paises[i].CountryCode" style="color:red"></span>
+		<br />
+	}
+	<button type="submit">Cadastrar</button>
+</form>
+
+<br />
+
+<ul>
+	@foreach (var item in Model.Paises)
+	{
+		<li>@item.CountryName - @item.CountryCode</li>
+	}
+</ul>
+
+@section Scripts{
+	<partial name="_ValidationScriptsPartial">
+}

@@ -1,0 +1,36 @@
+﻿@page
+@model exercicios.Pages.SaveNoteModel
+@{
+}
+<h3>Salvar no arquivo</h3>
+
+<form method="post">
+    <input type="type" asp-for="Input.Content" />
+    <button type="submit">Salvar</button>
+</form>
+
+@if (!string.IsNullOrEmpty(Model.Caminho))
+{
+    <p>Arquivo: <a href="@Model.Caminho" download">Download</a></p>
+}
+
+<h3>Arquivos salvos</h3>
+
+@if (Model.Arquivos != null && Model.Arquivos.Any())
+{
+    <ul>
+        @foreach (var arquivo in Model.Arquivos)
+        {
+            <li><a asp-page="./SaveNote" asp-route-file="@arquivo">@arquivo</a></li>
+        }
+    </ul>
+}
+else
+{
+    <p>Não há nenhuma nota salva.</p>
+}
+@if (!string.IsNullOrEmpty(Model.ConteudoVisualizado))
+{
+    <p>@Model.NomeSelecionado</p>
+    <p>@Model.ConteudoVisualizado</p>
+}

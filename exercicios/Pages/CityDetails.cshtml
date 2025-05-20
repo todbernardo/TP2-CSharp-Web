@@ -1,0 +1,13 @@
+﻿@page "{cityName}"
+@model exercicios.Pages.CityDetailsModel
+@{
+}
+<h1>City Details</h1>
+<p>Você está vendo detalhes de: @Model.CityName</p>
+
+<ul>
+    @foreach (var city in Model.Cities)
+    {
+        <li><a asp-page="/CityDetails" asp-route-cityName="@city">@city</a></li>
+    }
+</ul>
